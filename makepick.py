@@ -43,6 +43,9 @@ notsoexpert_to_espn = {
     'CIN': 'Bengals'}
 
 
+number_rounds = 25
+
+
 def get_power_rankings():
     power_rankings = {}
     bsoup = BeautifulSoup(urlopen('http://espn.go.com/nfl/powerrankings'))
@@ -54,25 +57,28 @@ def get_power_rankings():
         power_rankings[team_name] = rank
     return power_rankings
 
+
 def get_matchups_for_week(week_num):
     url = 'http://notsoexpert-dev.elasticbeanstalk.com/api/schedule/%d' % week_num
     jsondata = urlopen(url).read()
     week_data = json.loads(jsondata)
     return week_data
 
+
 def usage():
     print >> sys.stderr, "Please provide a week number."
+
 
 def compute_bias(home_pr, away_pr):
     spread = away_pr - home_pr
     bias = (spread / 32.0) * 0.25
     return bias
 
+
 def main():
     if len(sys.argv) is 1:
         usage()
         sys.exit(-1)
-
     random.seed(time.time())
     matchups = get_matchups_for_week(int(sys.argv[1]))
     power_rankings = get_power_rankings()
@@ -84,18 +90,19 @@ def main():
         home_pr = power_rankings[home_espn]
         away_pr = power_rankings[away_espn]
         home_bias = compute_bias(home_pr, away_pr) + 0.5
+        home_bias += 0.08 # add home team advantage
         print "Game %d, odds %f (%s) to %f (%s):" % (game['game_id'], home_bias,home_espn, 1.0 - home_bias,away_espn),
         home_win = 0
         away_win = 0
-        for i in xrange(101):
+        for i in xrange(number_rounds):
             if random.random() > home_bias:
                 away_win += 1
             else:
                 home_win += 1
         if home_win > away_win:
-            print home_espn, " (%d/101)" % home_win
+            print home_espn, " (%d/%d)" % (home_win, number_rounds)
         else:
-            print away_espn, " (%d/101)" % away_win
+            print away_espn, " (%d/%d)" % (away_win, number_rounds)
 
 
 if '__main__' == __name__:
