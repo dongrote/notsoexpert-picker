@@ -5,6 +5,7 @@ from urllib2 import urlopen
 from bs4 import BeautifulSoup
 import simplejson as json
 import sys
+import math
 
 
 # need a mapping between notsoexpert.com and espn
@@ -43,6 +44,48 @@ notsoexpert_to_espn = {
     'CIN': 'Bengals'}
 
 
+timezones = {
+    'NYJ' : 'EDT',
+    'NE' : 'EDT',
+    'CLE' : 'EDT',
+    'BAL' : 'EDT',
+    'SD': 'PDT',
+    'PHI': 'EDT',
+    'DAL': 'CDT',
+    'KC': 'CDT',
+    'TEN': 'EDT',
+    'HOU': 'CDT',
+    'WAS': 'EDT',
+    'GB': 'CDT',
+    'MIA': 'EDT',
+    'IND': 'EDT',
+    'MIN': 'CDT',
+    'CHI': 'CDT',
+    'CAR': 'EDT',
+    'BUF': 'EDT',
+    'STL': 'CDT',
+    'ATL': 'EDT',
+    'NO': 'CDT',
+    'TB': 'EDT',
+    'DET': 'EDT',
+    'ARI': 'MST',
+    'DEN': 'MDT',
+    'NYG': 'EDT',
+    'JAC': 'EDT',
+    'OAK': 'PDT',
+    'SF': 'PDT',
+    'SEA': 'PDT',
+    'PIT': 'EDT',
+    'CIN': 'EDT'}
+
+
+timezone_numbers = {'EDT': -4,
+        'CDT': -5,
+        'MDT': -6,
+        'MST': -7,
+        'PDT': -7 }
+
+
 number_rounds = 25
 
 
@@ -69,10 +112,43 @@ def usage():
     print >> sys.stderr, "Please provide a week number."
 
 
-def compute_bias(home_pr, away_pr):
+def compute_powerrank_bias(home_pr, away_pr):
     spread = away_pr - home_pr
     bias = (spread / 32.0) * 0.25
     return bias
+
+def absval(num):
+    return math.sqrt(num**2)
+
+def get_tz_range(tz):
+    # build a list from the timezone dictionary
+    tz_list = []
+    for key in tz:
+        tz_list.append(tz[key])
+    return absval( max(tz_list) - min(tz_list) )
+
+
+def compute_timezone_bias(home_tz, away_tz):
+    home_tz_num = timezone_numbers[home_tz]
+    away_tz_num = timezone_numbers[away_tz]
+    delta = (home_tz_num - away_tz_num) / get_tz_range(timezone_numbers)
+    if delta > 0:
+        # away team is travelling east
+        bias = delta * 0.1
+    else:
+        # away team is travelling west
+        bias = delta * 0.05
+    return absval(bias)
+
+
+def compute_altitude_bias(home_alt, away_alt):
+    pass
+
+
+def compute_vegas_bias(home, away):
+    # ingest lines from vegas
+    # http://www.footballlocks.com/nfl_lines.shtml
+    pass
 
 
 def main():
@@ -89,9 +165,10 @@ def main():
         away_espn = notsoexpert_to_espn[away]
         home_pr = power_rankings[home_espn]
         away_pr = power_rankings[away_espn]
-        home_bias = compute_bias(home_pr, away_pr) + 0.5
-        home_bias += 0.08 # add home team advantage
-        print "Game %d, odds %f (%s) to %f (%s):" % (game['game_id'], home_bias,home_espn, 1.0 - home_bias,away_espn),
+        home_bias = compute_powerrank_bias(home_pr, away_pr) + 0.5
+        tz_bias = compute_timezone_bias( timezones[home], timezones[away] )
+        home_bias += tz_bias
+        print "Game %d, TZ Bias: %f, odds %f (%s) to %f (%s):" % (game['game_id'], tz_bias, home_bias, home_espn, 1.0 - home_bias,away_espn),
         home_win = 0
         away_win = 0
         for i in xrange(number_rounds):
