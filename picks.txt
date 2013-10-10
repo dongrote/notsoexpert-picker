@@ -48,3 +48,21 @@ Game 74, TZ Bias: 0.033333, odds 0.400521 (Cowboys) to 0.599479 (Broncos): Bronc
 Game 76, TZ Bias: 0.033333, odds 0.588021 (49ers) to 0.411979 (Texans): Texans  (18/25)
 Game 75, TZ Bias: 0.000000, odds 0.414062 (Raiders) to 0.585938 (Chargers): Chargers  (14/25)
 Game 77, TZ Bias: 0.000000, odds 0.546875 (Falcons) to 0.453125 (Jets): Falcons  (15/25)
+
+(2:2026)$ ./makepick.py 6
+Game 78, TZ Bias: 0.016667, odds 0.680729 (Bears) to 0.319271 (Giants): Bears  (20/25)
+Game 86, TZ Bias: 0.000000, odds 0.429688 (Buccaneers) to 0.570312 (Eagles): Buccaneers  (15/25)
+Game 85, TZ Bias: 0.033333, odds 0.548958 (Ravens) to 0.451042 (Packers): Ravens  (16/25)
+Game 84, TZ Bias: 0.000000, odds 0.585938 (Jets) to 0.414062 (Steelers): Jets  (15/25)
+Game 83, TZ Bias: 0.016667, odds 0.501042 (Vikings) to 0.498958 (Panthers): Vikings  (15/25)
+Game 82, TZ Bias: 0.066667, odds 0.730729 (Chiefs) to 0.269271 (Raiders): Chiefs  (20/25)
+Game 81, TZ Bias: 0.000000, odds 0.562500 (Texans) to 0.437500 (Rams): Texans  (15/25)
+Game 80, TZ Bias: 0.000000, odds 0.468750 (Browns) to 0.531250 (Lions): Lions  (16/25)
+Game 79, TZ Bias: 0.000000, odds 0.382812 (Bills) to 0.617188 (Bengals): Bengals  (20/25)
+Game 88, TZ Bias: 0.050000, odds 0.620313 (Seahawks) to 0.379687 (Titans): Seahawks  (16/25)
+Game 87, TZ Bias: 0.033333, odds 0.775521 (Broncos) to 0.224479 (Jaguars): Broncos  (15/25)
+Game 89, TZ Bias: 0.033333, odds 0.502083 (Patriots) to 0.497917 (Saints): Patriots  (17/25)
+Game 90, TZ Bias: 0.000000, odds 0.593750 (49ers) to 0.406250 (Cardinals): 49ers  (16/25)
+Game 91, TZ Bias: 0.016667, odds 0.610417 (Cowboys) to 0.389583 (Redskins): Cowboys  (16/25)
+Game 92, TZ Bias: 0.050000, odds 0.425000 (Chargers) to 0.575000 (Colts): Chargers  (15/25)
+
