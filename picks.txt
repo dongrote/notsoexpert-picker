@@ -82,3 +82,19 @@ Game 104, TZ Bias: 0.016667, odds 0.586979 (Packers) to 0.413021 (Browns): Packe
 Game 105, TZ Bias: 0.000000, odds 0.382812 (Steelers) to 0.617188 (Ravens): Ravens  (19/25)
 Game 106, TZ Bias: 0.066667, odds 0.527604 (Colts) to 0.472396 (Broncos): Colts  (15/25)
 Game 107, TZ Bias: 0.033333, odds 0.517708 (Giants) to 0.482292 (Vikings): Giants  (14/25)
+
+(2:2008)$ ./makepick.py 8
+Game 108, TZ Bias: 0.000000, odds 0.398438 (Buccaneers) to 0.601562 (Panthers): Panthers  (13/25)
+Game 114, TZ Bias: 0.000000, odds 0.578125 (Eagles) to 0.421875 (Giants): Eagles  (17/25)
+Game 113, TZ Bias: 0.000000, odds 0.562500 (Patriots) to 0.437500 (Dolphins): Patriots  (14/25)
+Game 112, TZ Bias: 0.016667, odds 0.641667 (Saints) to 0.358333 (Bills): Saints  (16/25)
+Game 111, TZ Bias: 0.016667, odds 0.680729 (Chiefs) to 0.319271 (Browns): Chiefs  (18/25)
+Game 110, TZ Bias: 0.100000, odds 0.396875 (Jaguars) to 0.603125 (49ers): 49ers  (15/25)
+Game 109, TZ Bias: 0.033333, odds 0.525521 (Lions) to 0.474479 (Cowboys): Lions  (13/25)
+Game 115, TZ Bias: 0.000000, odds 0.562500 (Bengals) to 0.437500 (Jets): Bengals  (15/25)
+Game 116, TZ Bias: 0.050000, odds 0.526563 (Raiders) to 0.473437 (Steelers): Raiders  (14/25)
+Game 117, TZ Bias: 0.050000, odds 0.518750 (Cardinals) to 0.481250 (Falcons): Cardinals  (14/25)
+Game 118, TZ Bias: 0.033333, odds 0.689583 (Broncos) to 0.310417 (Redskins): Broncos  (13/25)
+Game 119, TZ Bias: 0.000000, odds 0.335938 (Vikings) to 0.664062 (Packers): Packers  (21/25)
+Game 120, TZ Bias: 0.066667, odds 0.386979 (Rams) to 0.613021 (Seahawks): Seahawks  (16/25)
+
